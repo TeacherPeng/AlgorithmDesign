@@ -1,11 +1,15 @@
 # Prerequisites
 *.d
 
+# VS Code
+.vscode/
+
 # Compiled Object files
 *.slo
 *.lo
 *.o
 *.obj
+bin/
 
 # Precompiled Headers
 *.gch
