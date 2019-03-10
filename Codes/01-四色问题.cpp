@@ -1,6 +1,7 @@
-#include <iostream>
+﻿#include <iostream>
 using namespace std;
-int main()
+
+int FourColors()
 {
     int count = 0;
     for (int a = 0; a < 4; a++)
@@ -13,12 +14,19 @@ int main()
                 if (b == c) continue;
                 for (int d = 0; d < 4; d++)
                 {
+                    if (a != b && b != c && c != d && d != a)
+                        count++;
                     if (a == d || c == d) continue;
                     count++;
                 }
             }
         }
     }
-    cout << "Count is " << count << endl;
+    return count;
+}
+
+int main()
+{
+    cout << "Count is " << FourColors() << endl;
     return 0;
 }
