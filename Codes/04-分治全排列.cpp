@@ -1,4 +1,4 @@
-#include <iostream>
+﻿#include <iostream>
 using namespace std;
 
 int Permutation(int perm[], int n, int (*F)(int *, int), int index)
