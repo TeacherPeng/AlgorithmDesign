@@ -2,6 +2,7 @@
 *.d
 
 # VS Code
+.vs/
 .vscode/
 
 # Compiled Object files
