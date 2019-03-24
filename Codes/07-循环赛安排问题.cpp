@@ -8,7 +8,7 @@ vector<vector<int>> GetSchedule(int m)
     int n = 1 << m;
 
     // 分配赛程表的存储空间
-    vector<vector<int>> aSchedule(n);
+    vector<vector<int>> aSchedule(n, vector<int>(n - 1));
     
     // 开始填表
     for (int i = 1; i < n; i += i)
@@ -18,8 +18,8 @@ vector<vector<int>> GetSchedule(int m)
         {
             for (int k = s; k < s + i; k++)
             {
-                aSchedule[k].push_back(k + i + 1);
-                aSchedule[k + i].push_back(k + 1);
+                aSchedule[k][i - 1] = k + i + 1;
+                aSchedule[k + i][i - 1] = k + 1;
             }
         }
 
@@ -30,8 +30,8 @@ vector<vector<int>> GetSchedule(int m)
             {
                 for (int k = s; k < s + i; k++)
                 {
-                    aSchedule[k].push_back(aSchedule[k + i][j]);
-                    aSchedule[k + i].push_back(aSchedule[k][j]);
+                    aSchedule[k][i + j] = aSchedule[k + i][j];
+                    aSchedule[k + i][i + j] = aSchedule[k][j];
                 }
             }
         }
