@@ -5,7 +5,7 @@
 using namespace std;
 
 // 输入联乘矩阵的行列数向量p，输出子问题最优值矩阵M和计算轨迹矩阵K
-int MatrixMul(vector<long long> p, vector<vector<long long>> &M, vector<vector<int>> &K)
+int MatrixMul(const vector<long long> &p, vector<vector<long long>> &M, vector<vector<int>> &K)
 {
     // 确定联乘矩阵个数
     int n = p.size() - 1;
