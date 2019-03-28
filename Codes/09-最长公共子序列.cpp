@@ -12,14 +12,17 @@ enum DirectEnum
 
 int GetMaxSubStringLen(const string &X, const string &Y, vector<vector<DirectEnum>> &d)
 {
+    // 分配最优值矩阵c和计算轨迹矩阵d的空间
     vector<vector<int>> c(X.size() + 1, vector<int>(Y.size() + 1));
     d = vector<vector<DirectEnum>>(X.size() + 1, vector<DirectEnum>(Y.size() + 1));
 
+    // 初始化叶子结点
     for (size_t i = 0; i < X.size() + 1; i++)
         c[i][0] = 0;
     for (size_t i = 0; i < Y.size() + 1; i++)
         c[0][i] = 0;
 
+    // 逐行逐列计算子问题的最优值c，并记录计算轨迹d
     for (size_t i = 1; i < X.size() + 1; i++)
     {
         for (size_t j = 1; j < Y.size() + 1; j++)
@@ -42,6 +45,7 @@ int GetMaxSubStringLen(const string &X, const string &Y, vector<vector<DirectEnu
         }
     }
 
+    // 返回最优值
     int result = c[X.size()][Y.size()];
     return result;
 }
