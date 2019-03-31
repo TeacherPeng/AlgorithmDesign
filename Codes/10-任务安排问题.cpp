@@ -1,14 +1,10 @@
 ﻿#include <iostream>
 #include <vector>
-#include <utility>
 #include <algorithm>
 using namespace std;
 
 struct Task
 {
-    Task(int aId, int aStartTime, int aOverTime) : Id(aId), StartTime(aStartTime), OverTime(aOverTime)
-    {
-    }
     int Id;
     int StartTime;
     int OverTime;
@@ -29,7 +25,7 @@ vector<int> GetSchedule(vector<Task> &aTasks)
         // 如果任务需要在已安排到的时间点之前开始，则不能安排
         if (aTask.StartTime < aOverTime)
             continue;
-        
+
         // 将可安排的任务的Id记入任务表，并修正已安排到的时间点
         aSchedule.push_back(aTask.Id);
         aOverTime = aTask.OverTime;
@@ -39,7 +35,19 @@ vector<int> GetSchedule(vector<Task> &aTasks)
 
 int main()
 {
-    vector<Task> aTasks{Task(0, 1, 4), Task(1, 3, 5), Task(2, 0, 6), Task(3, 5, 7), Task(4, 3, 8), Task(5, 5, 9), Task(6, 6, 10), Task(7, 8, 11), Task(8, 8, 12), Task(9, 2, 13), Task(10, 12, 14)};
+    vector<Task> aTasks{
+        {0, 1, 4},
+        {1, 3, 5},
+        {2, 0, 6},
+        {3, 5, 7},
+        {4, 3, 8},
+        {5, 5, 9},
+        {6, 6, 10},
+        {7, 8, 11},
+        {8, 8, 12},
+        {9, 2, 13},
+        {10, 12, 14},
+    };
 
     auto aSchedule = GetSchedule(aTasks);
 
