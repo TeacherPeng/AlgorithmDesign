@@ -35,12 +35,12 @@ int GetMaxSubStringLen(const string &X, const string &Y, vector<vector<DirectEnu
             else if (c[i][j - 1] < c[i - 1][j])
             {
                 c[i][j] = c[i - 1][j];
-                d[i][j] = DirectEnum::left;
+                d[i][j] = DirectEnum::top;
             }
             else
             {
                 c[i][j] = c[i][j - 1];
-                d[i][j] = DirectEnum::top;
+                d[i][j] = DirectEnum::left;
             }
         }
     }
@@ -58,10 +58,10 @@ string GetMaxSubString(const string X, const string Y, const vector<vector<Direc
         switch (d[i][j])
         {
         case DirectEnum::top:
-            j--;
+            i--;
             break;
         case DirectEnum::left:
-            i--;
+            j--;
             break;
         case DirectEnum::topleft:
             s = X[i - 1] + s;
