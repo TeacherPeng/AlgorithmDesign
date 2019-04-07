@@ -1,4 +1,4 @@
-#include <iostream>
+﻿#include <iostream>
 #include <vector>
 using namespace std;
 
@@ -7,9 +7,8 @@ class NQueenQuestion
   public:
     // 初始化状态结点，开始遍历状态空间树
     NQueenQuestion(int n, int (*F)(const vector<int> &))
-        : _board(n), _col(n), _L1(n + n - 1), _L2(n + n - 1), _row(0), N(n), _F(F)
+        : _board(n), _col(n), _L1(n + n - 1), _L2(n + n - 1), N(n), _F(F)
     {
-        _board[0] = -1;
         Solve();
     }
 
@@ -37,11 +36,23 @@ class NQueenQuestion
     int GetNextCol(int row)
     {
         int col;
-        for (col = _board[row] + 1; col < N && !CanPut(row, col); col++) ;
+        for (col = _board[row] + 1; col < N && !CanPut(row, col); col++)
+            ;
         return col;
+    }
+    int BackTracking()
+    {
+        _row--;
+        if (_row >= 0)
+            Remove(_row);
+        return 0;
     }
     int Solve()
     {
+        // 初始化遍历结点
+        _row = 0;
+        _board[_row] = -1;
+
         // 遍历状态空间树
         while (_row >= 0)
         {
@@ -61,8 +72,7 @@ class NQueenQuestion
                     _F(_board);
 
                     // 回溯
-                    _row--;
-                    Remove(_row);
+                    BackTracking();
                 }
                 else
                 {
@@ -73,8 +83,7 @@ class NQueenQuestion
             else
             {
                 // 回溯
-                _row--;
-                if (_row >= 0) Remove(_row);
+                BackTracking();
             }
         }
         return 0;
