@@ -70,18 +70,17 @@ class SubsetSumSolver
         // 遍历状态空间树
         while (Index >= 0)
         {
-            // 检查必要遍历条件
-            if (SA + W[Index] > M || SA + SW < M)
-            {
-                // 已经不满足必要遍历条件，回溯
-                BackTracking();
-                continue;
-            }
-
             // 处理当前元素W[Index]
             switch (A[Index])
             {
             case ProcessingStatusEnum::unknown:
+                // 检查必要遍历条件
+                if (SA + W[Index] > M || SA + SW < M)
+                {
+                    // 已经不满足必要遍历条件，回溯
+                    BackTracking();
+                    continue;
+                }
                 // 当前元素还未被处理过，首次尝试选中该元素
                 A[Index] = ProcessingStatusEnum::select;
                 SW -= W[Index];
@@ -113,7 +112,7 @@ class SubsetSumSolver
     int SW;                         // 剩余和
     int SA;                         // 选入和
     int Index;                      // 待处理元素的下标
-    int (*F)(const vector<int> &);     // 接收结果的回调函数
+    int (*F)(const vector<int> &);  // 接收结果的回调函数
 };
 
 int Print(const vector<int> &aSubset)
