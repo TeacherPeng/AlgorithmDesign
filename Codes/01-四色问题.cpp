@@ -14,8 +14,6 @@ int FourColors()
                 if (b == c) continue;
                 for (int d = 0; d < 4; d++)
                 {
-                    if (a != b && b != c && c != d && d != a)
-                        count++;
                     if (a == d || c == d) continue;
                     count++;
                 }
