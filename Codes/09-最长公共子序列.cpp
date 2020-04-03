@@ -64,7 +64,7 @@ string GetMaxSubString(const string X, const string Y, const vector<vector<Direc
             j--;
             break;
         case DirectEnum::topleft:
-            s = X[i - 1] + s;
+            s = s + X[i - 1];
             i--;
             j--;
             break;
